@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomHeaderControl" Height="550" Width="600"
         WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#f7f8fb">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition/>
@@ -24,6 +24,7 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="82"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -36,8 +37,110 @@
                        Margin="12"
                        Grid.Row="0"/>
             <StackPanel Grid.Row="1"
-                        Margin="12">
-                
+                        Margin="12"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Border Background="White"
+                        Width="120"
+                        VerticalAlignment="Center"
+                        BorderThickness="1,1,0,1"
+                        BorderBrush="Black"
+                        CornerRadius="4,0,0,4">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Datum" HorizontalAlignment="Center"/>
+                        <Separator/>
+                        <ComboBox Margin="3"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="White"
+                        Width="120"
+                        VerticalAlignment="Center"
+                        BorderThickness="1,1,0,1"
+                        BorderBrush="Black">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Empfänger" HorizontalAlignment="Center"/>
+                        <Separator/>
+                        <ComboBox Margin="3"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="White"
+                        Width="120"
+                        VerticalAlignment="Center"
+                        BorderThickness="1,1,0,1"
+                        BorderBrush="Black">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Verwendungszweck" HorizontalAlignment="Center"/>
+                        <Separator/>
+                        <ComboBox Margin="3"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="White"
+                        Width="120"
+                        VerticalAlignment="Center"
+                        BorderThickness="1"
+                        BorderBrush="Black"
+                        CornerRadius="0,4,4,0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Betrag" HorizontalAlignment="Center"/>
+                        <Separator/>
+                        <ComboBox Margin="3"/>
+                    </StackPanel>
+                </Border>
+                <Button Content="Vorschau"/>
+            </StackPanel>
+            <ListView Grid.Row="2" Margin="8" BorderThickness="1">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Datum" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="01.01.2024"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Empfänger" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="01.01.2024"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Verwendungszweck" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="01.01.2024"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Betrag" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="01.01.2024"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Kategorie" Width="auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="01.01.2024"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Grid.Row="3">
+                <Button Content="Bestätigen"/>
+                <Button Content="Abbrechen"/>
             </StackPanel>
         </Grid>
     </Grid>
