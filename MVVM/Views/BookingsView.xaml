@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="WhereIsMyMoney.MVVM.Views.BookingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhereIsMyMoney.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:WhereIsMyMoney.MVVM.ViewModels"
+             xmlns:core="clr-namespace:WhereIsMyMoney.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="893" d:DesignWidth="1152">
+    <UserControl.DataContext>
+        <viewmodels:BookingsViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <core:IsNegativConverter x:Key="IsNegativeConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="{Binding TitleMonth}" FontSize="38" Margin="5,0"/>
+                    <TextBlock Text="{Binding TitleYear}" FontSize="38" Margin="5,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="zurück" Command="{Binding SetMonthCommand}" CommandParameter="-1" Style="{StaticResource BookingMonthButton}"/>
+            </Border>
+            <Border Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="vor" Command="{Binding SetMonthCommand}" CommandParameter="1" Style="{StaticResource BookingMonthButton}"/>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="24"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="White" Style="{StaticResource AccountCard}">
+                <ListView SelectedItem="{Binding SelectedJournalEntry}" Background="Transparent" BorderThickness="0" ItemsSource="{Binding SortedJournalEntries}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Background" Value="{StaticResource ListItemBackground_Brush}"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Datum" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Date, StringFormat={}{0:dd. MMM. yyyy}}" Style="{StaticResource BookingItemText}" HorizontalAlignment="Center" Language="de"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Name" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Left" Text="{Binding Name}" Style="{StaticResource BookingItemText}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Kategorie" Width="190">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Category.CategoryName}" Style="{StaticResource BookingItemText}" HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Beschreibung" Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Description}" Style="{StaticResource BookingItemText}" HorizontalAlignment="Left"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Betrag" Width="140">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Margin="10,0" Text="{Binding Value, StringFormat={}{0:N2} €}" HorizontalAlignment="Right" Language="de">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                                    <Setter Property="FontSize" Value="14"/>
+                                                    <Setter Property="FontWeight" Value="Normal"/>
+                                                    <Setter Property="FontFamily" Value="Work Sans"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
+                                                    <Setter Property="Margin" Value="5"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Value, Converter={StaticResource IsNegativeConverter}}" Value="True">
+                                                            <Setter Property="Foreground" Value="Red"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Value, Converter={StaticResource IsNegativeConverter}}" Value="False">
+                                                            <Setter Property="Foreground" Value="Green"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" Text="Aktives Konto" FontSize="14" FontWeight="SemiBold" FontFamily="Work Sans"/>
+            <ComboBox ItemsSource="{Binding AccountList}" SelectedItem="{Binding Account, Mode=TwoWay}" Width="160" HorizontalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding AccountName}" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <Border Style="{StaticResource AccountCard}" Margin="0,12" VerticalAlignment="Top" Width="260" Height="460" Grid.Column="2" Grid.Row="1"  Background="White" CornerRadius="8">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Style="{StaticResource AddBookingBlock}" Text="Datum"/>
+                    <TextBox Style="{StaticResource AddBookingBox}" Text="{Binding DateEntry}" Width="160"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Style="{StaticResource AddBookingBlock}" Text="Name"/>
+                    <TextBox Style="{StaticResource AddBookingBox}" Text="{Binding NameEntry}" Width="160"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Style="{StaticResource AddBookingBlock}" Text="Kategorie"/>
+                    <ComboBox ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory}" Width="160" HorizontalContentAlignment="Center">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CategoryName}" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate> 
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Style="{StaticResource AddBookingBlock}" Text="Beschreibung"/>
+                    <TextBox Style="{StaticResource AddBookingBox}" Text="{Binding DescriptionEntry}" Width="160"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Style="{StaticResource AddBookingBlock}" Text="Betrag"/>
+                    <TextBox Style="{StaticResource AddBookingBox}" Text="{Binding ValueEntry}" Width="160" Language="de"/>
+                </StackPanel>
+                <Separator Margin="0,12"/>
+                <Button Style="{StaticResource AccountBtn}" Margin="8" Content="Hinzufügen" Height="50" Command="{Binding AddJournalEntryCommand}"/>
+                <Button Style="{StaticResource AccountBtnDel}" Background="#db4040" Content="Löschen" Height="50" Command="{Binding DeleteSelectedEntryCommand}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

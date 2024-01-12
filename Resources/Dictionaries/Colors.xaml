@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Color x:Key="TeaGreen">#c6ebbe</Color>
+    <Color x:Key="Celadon">#a9dbb8</Color>
+    <Color x:Key="AirSuperBlue">#7ca5b8</Color>
+    <Color x:Key="EgyptianBlue">#38369a</Color>
+    <Color x:Key="PhtaloBlue">#020887</Color>
+
+    <Color x:Key="Primary">#D5B263</Color>
+    <Color x:Key="Secondary">#D5B263</Color>
+    <Color x:Key="Accent">#C9AD8B</Color>
+    <Color x:Key="Background">#293040</Color>
+
+    <Color x:Key="ListItemBackground">#edf9fa</Color>
+
+    <SolidColorBrush x:Key="TeaGreen_Brush">#c6ebbe</SolidColorBrush>
+    <SolidColorBrush x:Key="Celadon_Brush">#a9dbb8</SolidColorBrush>
+    <SolidColorBrush x:Key="AirSuperBlue_Brush">#7ca5b8</SolidColorBrush>
+    <SolidColorBrush x:Key="EgyptianBlue_Brush">#38369a</SolidColorBrush>
+    <SolidColorBrush x:Key="PhtaloBlue_Brush">#020887</SolidColorBrush>
+
+    <SolidColorBrush x:Key="Primary_Brush">#D5B263</SolidColorBrush>
+    <SolidColorBrush x:Key="Accent_Brush">#C9AD8B</SolidColorBrush>
+    <SolidColorBrush x:Key="Background_Brush">#293040</SolidColorBrush>
+
+    <SolidColorBrush x:Key="ListItemBackground_Brush">#edf9fa</SolidColorBrush>
+</ResourceDictionary>

@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WhereIsMyMoney.MVVM.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhereIsMyMoney.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:WhereIsMyMoney.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="1220">
+    <UserControl.DataContext>
+        <viewmodels:StatisticsViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="280"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Letze 12 Monate" FontSize="12" FontFamily="Work Sans" Foreground="DarkGray"/>
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding CubeAdapters}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="48"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding IncomeInRange, StringFormat={}{0:N0}€}" Language="de" HorizontalAlignment="Center"/>
+                                <!--<Rectangle Width="45" Fill="Green" Height="{Binding IncomeBarHeight}"/>-->
+                                <Border Background="Green" Width="45" Height="{Binding IncomeBarHeight}" CornerRadius="3,3,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding SpendingsInRange, StringFormat={}{0:N0}€}" Language="de" HorizontalAlignment="Center"/>
+                                <Border Background="Red" Width="45" Height="{Binding SpendingsBarHeight}" CornerRadius="3,3,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding Range, StringFormat={}{0: MMMM yy}}" HorizontalAlignment="Center" FontSize="12" Margin="3"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,140 @@
+﻿<Window x:Class="WhereIsMyMoney.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WhereIsMyMoney"
+        xmlns:viewmodels="clr-namespace:WhereIsMyMoney.MVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1003" Width="1440"
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    <Grid Background="#f7f8fb">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Background="{StaticResource Background_Brush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="12"/>
+                </Grid.RowDefinitions>
+                <Image Source="./Resources/Images/logo-no-background.png"
+                       Height="100"
+                       Width="210"/>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="1">
+                    <Separator Grid.Row="1" 
+                               Margin="10"
+                               Opacity="0.6"/>
+                    <TextBlock Text="Übersicht" Foreground="LightGray" HorizontalAlignment="Center"  FontSize="16" FontFamily="Work sans" Margin="8,8"/>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/Dashboard-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Dashboard" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image  Source="./Resources/Images/transfer-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Buchungen" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/statistik-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Statistik" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Separator Margin="10" Opacity="0.6"/>
+                    <TextBlock Margin="0,8"  Text="Verwaltung" Foreground="LightGray" FontSize="16" HorizontalAlignment="Center" FontFamily="Work Sans"/>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="3">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/konto-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Konten" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="4">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/kategorien-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Kategorien" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/vorlagen-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Vorlagen" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="6">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/import-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Import" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Separator Margin="10" Opacity="0.6"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Row="2" >
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="7">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/info-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Info" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource NavBtn}" Command="{Binding SetCurrentViewModel}" CommandParameter="8">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="205">
+                            <Image Source="./Resources/Images/einstellungen-ico.png" Height="30" Width="30"/>
+                            <TextBlock Margin="5,0" Text="Einstellungen" Style="{StaticResource NavBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="0" Grid.Column="1" >
+            <!--Background="#fbfbfb"-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" MouseDown="Border_MouseDown">
+                <TextBlock Text=""/>
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0">
+                <Button Style="{StaticResource WinCntrBtn}" Command="{Binding Minimize}" Content="🗕" Foreground="Black" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <!--<Image Source="./Resources/Images/minimize-ico.png"/>-->
+                </Button>
+                <Button Style="{StaticResource WinCntrBtn}" Command="{Binding Maximize}" Content="🗖" Foreground="Black" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <!--<Image Source="./Resources/Images/maximize-ico.png"/>-->
+                </Button>
+                <Button Style="{StaticResource WinCntrBtnCls}" Command="{Binding Quit}" Content="🗙" Foreground="Black" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <!--<Image Source="./Resources/Images/close-ico.png"/>-->
+                    
+                </Button>
+            </StackPanel>
+            <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding NameOfView}" FontSize="38" FontFamily="Work Sans" HorizontalAlignment="Center"/>
+                    <Separator Margin="20,10" Opacity="0.7" Height="5"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <ContentControl Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentViewModel}" Margin="24,0,0,0"/>
+    </Grid>
+</Window>
