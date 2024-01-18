@@ -27,6 +27,7 @@
                 <RowDefinition Height="110"/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Text="Bitte bestätige die ausgewählten Spalten aus der CSV Datei oder passe sie entsprechend an"
                        HorizontalAlignment="Center"
@@ -88,7 +89,7 @@
                 </Border>
                 <Button Content="Vorschau"/>
             </StackPanel>
-            <ListView Grid.Row="2" Margin="8" BorderThickness="1">
+            <ListView Grid.Row="3" Margin="8" BorderThickness="1">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="BorderThickness" Value="0,0,0,1"/>
@@ -138,10 +139,13 @@
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Grid.Row="3">
+                        Grid.Row="4">
                 <Button Content="Bestätigen"/>
                 <Button Content="Abbrechen"/>
             </StackPanel>
+            <ListView Grid.Row="2" Margin="8" BorderThickness="1" x:Name="inputDataView">
+                
+            </ListView>
         </Grid>
     </Grid>
 </Window>

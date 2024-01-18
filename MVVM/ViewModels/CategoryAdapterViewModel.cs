@@ -7,7 +7,7 @@ using WhereIsMyMoney.MVVM.Models;
 
 namespace WhereIsMyMoney.MVVM.ViewModels
 {
-    class CategoryAdapterViewModel : BaseViewModel
+    public class CategoryAdapterViewModel : BaseViewModel
     {
         private CategoryModel _category;
 

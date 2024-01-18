@@ -3,7 +3,7 @@ using WhereIsMyMoney.MVVM.Models;
 
 namespace WhereIsMyMoney.MVVM.ViewModels
 {
-    class JournalEntryAdapterViewModel : BaseViewModel
+    public class JournalEntryAdapterViewModel : BaseViewModel
     {
         private JournalsEntryModel _journalsEntry;
 
